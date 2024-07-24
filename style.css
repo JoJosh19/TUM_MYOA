@@ -1,13 +1,259 @@
-body{
-    background-color:burlywood;
+
+/*Global*/
+* {
+    font-family:Roboto, Arial, "Sans Serif";
+    margin: 0px;
+    padding: 0px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    z-index: 0;
 }
-h1 {
+body {
+    font-size: 14px;
+    display: flex;
+    overflow-x: hidden;
+}
+
+.mainDivs {
+    height: 100%;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+}
+#menuSide {
+    width: 25%;
+}
+#chatSide {
+    width: 75%;
+    left: 25%;
+    border-left: 1.5px solid lightgrey;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/*App Bar*/
+.appBar {
+    display: flex;
+    align-items: center;
+    background-color: #eeeeee;
+    color: #00838f;
+    position: sticky;
+    top: 0px;
+    z-index: 1;
+}
+
+#moocus {
+    position: absolute;
+    background-color: #00838f;
+    top: 10px;
+    left: 10px;
+    border-radius: 3px;
+    height: 50px;
+}
+.title {
+    margin: 22.5px 0 22.5px 70px; /*!!Basis Margin!!*/
+}
+.fab {
+    width: 44px;
+    height: 44px;
+    background-color: #00838f;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px 0 #aaaaaa;
+
+    font-size: 40px;
+    font-weight: 900;
+    color: white;
     text-align: center;
-    color:ivory;
-    background-color: darkslategrey;
-    font-family: 'Courier New', Courier, monospace;
+    line-height: 44px;
+
+    position: absolute;
+    top: 48px;
+    right: 15px;
+
+    cursor: pointer;
 }
-h6 {
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+#appBar2 {
+    margin-left: 0;
+    justify-content: space-between;
+    min-height: 70.250px;
+}
+#chosenChat {
+    margin: 22.5px 0 22.5px 15px;
+}
+#addToFave{
+    color: #00838f;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+/*Channels List*/
+#channelsView {
+    margin: 5px 0 0 0px;
+    display: flex;
+    flex-direction: column;
+}
+.categories {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 0 10px;
+    font-size: smaller;
     text-transform: uppercase;
+    color: #00838f;
+    height: 30px;
+    justify-content: center;
+}
+.channelList {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+}
+.channel {
+    display: flex;
+    align-items: center;
+    padding: 20px 0 20px 10px;
+    font-size: 13.5px;
+}
+/* .channel:hover {
+    background-color: #eeeeee;
+    border-right: 5px solid #00838f;
+    transition: all 0.1s ease-out;
+} */
+.selected {
+    background-color: #eeeeee;
+    border-right: 5px solid #00838f;
+    transition: all 0.1s ease-out;
+}
+.channel::before {
+    font-family: 'Material Icons';
+    font-size: 17.5px;
+    content: 'group';
+    margin-right: 23.5px;
+}
+.dateLastActive {
+    display: flex;
+    margin-left: auto;
+    margin-right: 17.5px;
+    font-size: 11.5px;
+    font-weight: lighter;
+    color: rgba(0, 0, 0, 0.5)
+}
+
+/*Chats*/
+#chatArea {
+    margin: 10px 0 0 35px;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+.chatBlock {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    padding: 10px;
+    border-radius: 10px 10px 10px 0;
+    background-color: #eeeeee;
+    justify-content: flex-end;
+    position: relative;
+}
+.sender {
+    font-size: 10px;
+    font-weight: 700;
+    color: #00838f;
+    margin: 0 0 7.5px 0;
+}
+.chatLog {
+    white-space: normal;
+    font-size: 12.5px;
+}
+.chatBlock::before {
+    font-family: 'Material Icons';
+    font-size: 20px;
+    color: gray;
+    content: 'account_circle';
+    position: absolute;
+    left: -25px;
+    transform: translate(0, 10px);
+}
+.dateLog {
+    margin: 5px 0 15px 0;
+    font-size: 10.5px;
+    color: rgba(0, 0, 0, 0.5)
+}
+.chatBlock.mine {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    padding: 10px;
+    margin-right: 35px;
+    border-radius: 10px 10px 0 10px;
+    background-color: #00838f;
+    justify-content: flex-end;
+    position: relative;
+    align-self: flex-end;
+}
+.chatBlock.mine::before {
+    font-family: 'Material Icons';
+    font-size: 20px;
+    color: gray;
+    content: 'account_circle';
+    position: absolute;
+    left: auto;
+    right: -25px;
+    transform: translate(0, 10px);
+}
+.chatLog.mine {
+    white-space: normal;
+    font-size: 12.5px;
+    color: #eeeeee;
+}
+.dateLog.mine {
+    margin: 5px 35px 15px 0;
+    font-size: 10.5px;
+    color: rgba(0, 0, 0, 0.5);
+    align-self: flex-end;
+}
+
+/*Input Area*/
+#inputArea {
+    background-color: #eeeeee;
+    position: sticky;
+    bottom: 0px;
+    min-height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#messageInput {
+    border: none;
+    height: 27.5px;
+    position: absolute;
+    left: 50px;
+    right: 50px;
+    width: auto;
+    border-radius: 10px;
+    padding: 5px 5px 5px 8px;
+}
+#emoticonButton {
+    margin-left: 10px;
+    padding: 5.5px;
+    border-radius: 100%;
+    background-color: #00838f;
+    color:#eeeeee;
+    font-size: 14.5px;
+}
+#sendButton {  
+    margin-right: 15px;
+    color: #00838f;
+    cursor: pointer;
+    border: none;
+}
+#sendButton:active {
+    transform: scale(0.90); 
+
 }
