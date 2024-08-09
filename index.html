@@ -11,10 +11,11 @@
     <link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" rel="stylesheet" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="channels.js"></script>
+    <script src="messages.js"></script>
     <script src="main.js"></script>
 </head>
 
-<body>
+<body onload="init()">
     <div id="menuSide" class="mainDivs">
         <section id="appBar1" class="appBar">
             <img 
@@ -27,14 +28,14 @@
         </section>
         <section id="channelsView">
             <h2 class="categories">Favorites</h2>
-            <ul class="channelList">
-                <li id="channel_1" class="channel" onclick="switchChannel(channel_1)">Java Journey Buddies<span class="dateLastActive"> Yesterday</span></li>
-                <li id="channel_2" class="channel" onclick="switchChannel(channel_2)">Estrada Fam<span class="dateLastActive"> 2:37 PM</span><br></li>
+            <ul id="favoriteCh" class="channelList">
+                <!-- <li id="channel_1" class="channel" onclick="switchChannel(channel_1)">Java Journey Buddies<span class="dateLastActive"> Yesterday</span></li>
+                <li id="channel_2" class="channel" onclick="switchChannel(channel_2)">Estrada Fam<span class="dateLastActive"> 2:37 PM</span><br></li> -->
             </ul>
             <h2 class="categories">Regular</h2>
-            <ul class="channelList">
-                <li id="channel_3" class="channel" onclick="switchChannel(channel_3)">CAPS Consulting<span class="dateLastActive"> 29 June 2024</span></li>
-                <li id="channel_4" class="channel" onclick="switchChannel(channel_4)">Office of Rep. Presley<span class="dateLastActive"> 7 June 2024</span></li>
+            <ul id="regularCh" class="channelList">
+                <!-- <li id="channel_3" class="channel" onclick="switchChannel(channel_3)">CAPS Consulting<span class="dateLastActive"> 29 June 2024</span></li>
+                <li id="channel_4" class="channel" onclick="switchChannel(channel_4)">Office of Rep. Presley<span class="dateLastActive"> 7 June 2024</span></li> -->
             </ul>
         </section>
     </div>
@@ -44,7 +45,9 @@
                 <a id="addToFave" class="material-icons"></a>
             </section>
         <article id="chatArea">
-            <div class="chatBlock">
+            <p id="startText">— — Select a channel to begin messaging. — —</p>
+
+            <!-- <div class="chatBlock">
                 <h3 class="sender">Micah Estrada</h3>
                 <p class="chatLog">I don't know where it is, Mom.</p>
             </div>
@@ -86,7 +89,7 @@
                 <h3 class="sender">Melody Estrada</h3>
                 <p class="chatLog">Hahaha.</p>
             </div>
-            <p class="dateLog">2:47 PM</p>
+            <p class="dateLog">2:47 PM</p> -->
         </article>
         <div id="inputArea">
             <i class="material-icons" id="emoticonButton">insert_emoticon</i>

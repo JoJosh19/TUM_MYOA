@@ -143,6 +143,10 @@ body {
 }
 
 /*Chats*/
+#startText {
+    align-self: center;
+    margin: 20px;
+}
 #chatArea {
     margin: 10px 0 0 35px;
     display: flex;
