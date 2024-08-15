@@ -14,7 +14,7 @@ function init() {
 }
 
 
-let selectedChannel = null;
+var selectedChannel = null;
 
 function switchChannel(selectedChannelIndex) {
     const newSelectedChannel = channels[selectedChannelIndex];
@@ -30,9 +30,27 @@ function switchChannel(selectedChannelIndex) {
     selectedChannel = newSelectedChannel;
 
     showMessages(selectedChannel);
-
     updateHeader(selectedChannel);
+    document.getElementById('inputArea').style.display = 'flex';
 }
+
+document.getElementById('addToFave').addEventListener('click', favoritize);
+function favoritize() {
+    if(selectedChannel == null) {
+        return;
+    }
+    else{
+        if(selectedChannel.favorite == false) {
+            selectedChannel.favorite = true;
+        }
+        else if(selectedChannel.favorite == true) {
+            selectedChannel.favorite = false;
+        }
+    }
+    updateHeader(selectedChannel);
+    displayChannels();
+}
+
 
 function updateHeader(headerForChannel) {
     document.getElementById('chosenChat').innerHTML = headerForChannel.name;
@@ -46,7 +64,7 @@ function sendMessage() {
 
     let currentTime = new Date();
 
-    let messageString = '<div class="chatBlock mine"><p class="chatLog mine">' + messageText + '</p></div><p class="dateLog mine">' + currentTime + '</p>'
+    let messageString = '<div class="chatBlock mine"><p class="chatLog mine">' + messageText + '</p></div><p class="dateLog mine">' + parseDate(currentTime) + '</p>'
 
     const chatAreaU = document.getElementById('chatArea');
 
@@ -58,13 +76,9 @@ function sendMessage() {
     var textMe = messageText;
 
     selectedChannel.messages.push(new Message(sentMe, sentTimeMe, channelID, true, textMe));
+    displayChannels();
 
     document.getElementById('messageInput').value = "";
-
-    chatAreaU.scrollTop = chatAreaU.scrollHeight;
-
-    document.getElementById('messageInput').value = "";
-
     chatAreaU.scrollTop = chatAreaU.scrollHeight;
 }
 
@@ -84,13 +98,13 @@ function showMessages (param_selectedChannel) {
                                         <h3 class="sender">${sender}</h3><p class="chatLog">
                                         <p class="chatLog">${text}</p>
                                     </div>
-                                    <p class="dateLog">${sentTime}</p>`
+                                    <p class="dateLog">${parseDate(sentTime)}</p>`
             }
             else {
                 var blockToPrint =  `<div class="chatBlock mine">
                                         <p class="chatLog mine">${text}</p>
                                     </div>
-                                    <p class="dateLog mine">${sentTime}</p>`
+                                    <p class="dateLog mine">${parseDate(sentTime)}</p>`
             }
 
             
@@ -100,4 +114,22 @@ function showMessages (param_selectedChannel) {
     )
 }
 
-// make parseDate() function to change dates to hour format, as well as include day if from yesterday or longer
+function parseDate (date24) {
+    const now = new Date();
+    now_hours = now.getHours();
+    now_minutes = now.getMinutes();
+    now_seconds = now.getSeconds();
+    now_milliseconds = now.getMilliseconds();
+    recentMidnight = (now_hours * 60 * 60 * 1000) + (now_minutes * 60 * 1000) + (now_seconds * 1000) + now_milliseconds;
+
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const hours = date24.getHours() % 12;
+    const hours_suffix = date24.getHours() < 12 ? "AM" : "PM";
+    const minutes = date24.getMinutes() < 10 ? `0${date24.getMinutes()}` : date24.getMinutes();
+    if (date24.getTime() < recentMidnight) {
+        return `${days[date24.getDay()]}, ${hours}:${minutes} ${hours_suffix}`;
+    }
+    else {
+        return `${days[date24.getDay()]}, ${hours}:${minutes} ${hours_suffix}`; 
+    }
+}

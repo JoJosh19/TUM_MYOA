@@ -8,11 +8,8 @@
     <link href="style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" rel="stylesheet" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="channels.js"></script>
-    <script src="messages.js"></script>
-    <script src="main.js"></script>
 </head>
 
 <body onload="init()">
@@ -24,7 +21,7 @@
                 alt="moocusNotFound"
             >
             <h1 class="title">chatter | app</h1>
-            <a class="fab">+</a>
+            <a id="fab" onclick="showPop()">+</a>
         </section>
         <section id="channelsView">
             <h2 class="categories">Favorites</h2>
@@ -46,50 +43,6 @@
             </section>
         <article id="chatArea">
             <p id="startText">— — Select a channel to begin messaging. — —</p>
-
-            <!-- <div class="chatBlock">
-                <h3 class="sender">Micah Estrada</h3>
-                <p class="chatLog">I don't know where it is, Mom.</p>
-            </div>
-            <p class="dateLog">1:49 PM</p>
-            <div class="chatBlock">
-                <h3 class="sender">Melody Estrada</h3>
-                <p class="chatLog">Did you try checking under your bed? I know I saw a lot of clothes piled up there last night.</p>
-            </div>
-            <p class="dateLog">1:56 PM</p>
-            <div class="chatBlock">
-                <h3 class="sender">Micah Estrada</h3>
-                <p class="chatLog">It's not theeeere. I already cleaned it up when you asked me hahaha.</p>
-            </div>
-            <p class="dateLog">2:01 PM</p>
-            <div class="chatBlock">
-                <h3 class="sender">John Estrada</h3>
-                <p class="chatLog">Wasn't your jacket with Kuya when he was filming that one project? Hey Kuya, can you check your cabinets.</p>
-            </div>
-            <p class="dateLog">2:25 PM</p>
-            <div class="chatBlock mine">
-                <p class="chatLog mine">Woah woah woah. Wait a minute. Why you all roping me into this? HAHA. Of course I wouldn't have the slightest idea!</p>
-            </div>
-            <p class="dateLog mine">2:37 PM</p>
-            <div class="chatBlock">
-                <h3 class="sender">Micah Estrada</h3>
-                <p class="chatLog">Sounds fishy... Check his room! 😜</p>
-            </div>
-            <p class="dateLog">2:41 PM</p>
-            <div class="chatBlock mine">
-                <p class="chatLog mine">No! Don't! Wait! I'm on my way home now!!! 😠 😅</p>
-            </div>
-            <p class="dateLog mine">2:42 PM</p>
-            <div class="chatBlock">
-                <h3 class="sender">John Estrada</h3>
-                <p class="chatLog">Hahahahahaha!</p>
-            </div>
-            <p class="dateLog">2:44 PM</p>
-            <div class="chatBlock">
-                <h3 class="sender">Melody Estrada</h3>
-                <p class="chatLog">Hahaha.</p>
-            </div>
-            <p class="dateLog">2:47 PM</p> -->
         </article>
         <div id="inputArea">
             <i class="material-icons" id="emoticonButton">insert_emoticon</i>
@@ -104,7 +57,29 @@
             <button class="material-icons button" id="sendButton" onclick="sendMessage()">send</button>
         </div>
     </div>
-
+    <div id="overlay"></div>
+    <div popover="manual" id="addChPop">
+        <div id="textPop">Create a New Channel</div>
+        <input
+        type="text"
+        id="channelInput"
+        name="channelInput"
+        minlength="1"
+        maxlength="25"
+        placeholder="Name the New Channel."
+        >
+        <div><button id="closePop" type="button" onclick="hidePop()">
+            <span id="closeIcon" class="material-symbols-outlined">close</span>Cancel
+        </button>
+        <button id="createCh" type="button" onclick="hidePop();addChannel()">
+            <span id="check" class="material-symbols-outlined">check</span>Create
+        </button>
+        </div>
+    </div>
 </body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="channels.js"></script>
+    <script src="messages.js"></script>
+    <script src="main.js"></script>
 
 </html>

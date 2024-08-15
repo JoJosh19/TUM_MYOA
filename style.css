@@ -29,7 +29,7 @@ body {
     width: 75%;
     left: 25%;
     border-left: 1.5px solid lightgrey;
-    display: flex;
+    display: flex; 
     flex-direction: column;
 }
 
@@ -56,7 +56,7 @@ body {
 .title {
     margin: 22.5px 0 22.5px 70px; /*!!Basis Margin!!*/
 }
-.fab {
+#fab {
     width: 44px;
     height: 44px;
     background-color: #00838f;
@@ -64,7 +64,7 @@ body {
     box-shadow: 0 2px 5px 0 #aaaaaa;
 
     font-size: 40px;
-    font-weight: 900;
+    font-weight: 200;
     color: white;
     text-align: center;
     line-height: 44px;
@@ -74,6 +74,10 @@ body {
     right: 15px;
 
     cursor: pointer;
+    transition: transform 0.5s ease;
+}
+#fab:hover {
+    transform: rotate(240deg) scale(1.15);
 }
 
 #appBar2 {
@@ -174,6 +178,7 @@ body {
 .chatLog {
     white-space: normal;
     font-size: 12.5px;
+    flex-wrap: wrap;
 }
 .chatBlock::before {
     font-family: 'Material Icons';
@@ -215,6 +220,7 @@ body {
     white-space: normal;
     font-size: 12.5px;
     color: #eeeeee;
+    flex-wrap: wrap;
 }
 .dateLog.mine {
     margin: 5px 35px 15px 0;
@@ -229,7 +235,7 @@ body {
     position: sticky;
     bottom: 0px;
     min-height: 50px;
-    display: flex;
+    display: none; /*turns into flex after channel chosen*/
     justify-content: space-between;
     align-items: center;
 }
@@ -259,5 +265,108 @@ body {
 }
 #sendButton:active {
     transform: scale(0.90); 
+}
 
+/*Popover*/
+#overlay {
+    position: fixed;
+    display: flex;
+    top: 0;
+    width: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    background-color: black;
+    transition: opacity 0.3s ease-in-out,
+                z-index 0.3s ease-in-out;
+    z-index: -1;
+}
+#overlay.show {
+    opacity: 20%;
+    z-index: 2;
+}
+#addChPop {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    opacity: 0;
+    bottom: 15%;
+    height: 175px;
+    width: 300px;
+    border: none;
+    border-radius: 1px;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    transition: opacity 0.3s ease-in-out, 
+                transform 0.3s ease-in-out;
+    align-items: center;
+}
+#addChPop:popover-open {
+    opacity: 1;
+    transform: scale(0.95);
+}
+#textPop {
+    display: flex;
+    position: absolute;
+    margin: auto;
+    top: 8.5%;
+    height: 20px;
+    font-size: larger;
+    top: 15%;
+}
+#channelInput {
+    display: flex;
+    position: absolute;
+    top: 35%;
+    height: 20%;
+    width: 65%;
+    outline: none;
+    padding-left: 2.5%;
+    transition: all 0.2s ease;
+}
+#channelInput:focus {
+    box-shadow: 0 0 1px 1px lightblue;
+    border: 2px solid lightblue;
+}
+#closePop {
+    display: flex;
+    position: absolute;
+    inset: auto auto 10% 15%;
+    height: 40px;
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+    background: #0c7079;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: larger;
+}
+#closeIcon {
+    color: #0a666f;
+    font-size: 25px;
+    margin-right: 4px;
+    border-radius: 100%;
+    background-color: white;
+}
+#createCh {
+    display: flex;
+    position: absolute;
+    inset: auto 15% 10% auto;
+    height: 40px;
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+    background: #01aab9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: larger;
+}
+#check {
+    color: #00838f;
+    font-size: 25px;
+    margin-right: 4px;
+    border-radius: 100%;
+    background-color: white;
 }
